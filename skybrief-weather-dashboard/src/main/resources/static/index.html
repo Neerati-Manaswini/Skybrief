@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SkyBrief | Weather dashboard</title>
+    <meta name="description" content="Search any city for current conditions, an hourly outlook and a 7-day forecast.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="clear" data-day="day">
+<div class="app">
+
+    <header class="bar">
+        <h1 class="logo">SkyBrief</h1>
+        <form id="search" class="search" role="search">
+            <label for="city" class="sr-only">City</label>
+            <input id="city" type="search" placeholder="Search a city, e.g. Mumbai" autocomplete="off" maxlength="80" required>
+            <button type="submit" class="btn">Search</button>
+            <button type="button" id="locate" class="btn ghost" title="Use my location" aria-label="Use my location">📍</button>
+        </form>
+        <div class="units" role="group" aria-label="Temperature units">
+            <button type="button" data-units="metric" class="active">°C</button>
+            <button type="button" data-units="imperial">°F</button>
+        </div>
+    </header>
+
+    <div id="recent" class="recent" aria-label="Recent searches"></div>
+    <div id="error" class="error" role="alert" hidden></div>
+
+    <main id="main" class="loading" aria-live="polite">
+        <section class="card hero">
+            <p id="place" class="place">Loading…</p>
+            <p id="updated" class="muted"></p>
+            <div class="hero-main">
+                <span id="hero-icon" class="hero-icon" aria-hidden="true"></span>
+                <span id="temp" class="temp">–</span>
+            </div>
+            <p id="label" class="label"></p>
+            <p class="muted"><span id="hilo"></span> · Feels like <span id="feels"></span></p>
+        </section>
+
+        <section class="tiles" aria-label="Today's details">
+            <div class="tile"><span class="tile-label">Humidity</span><span id="humidity" class="tile-value">–</span></div>
+            <div class="tile"><span class="tile-label">Wind</span><span id="wind" class="tile-value">–</span></div>
+            <div class="tile"><span class="tile-label">Chance of rain</span><span id="rain" class="tile-value">–</span></div>
+            <div class="tile"><span class="tile-label">Sunrise</span><span id="sunrise" class="tile-value">–</span></div>
+            <div class="tile"><span class="tile-label">Sunset</span><span id="sunset" class="tile-value">–</span></div>
+        </section>
+
+        <section class="card">
+            <h2>Next 24 hours</h2>
+            <ol id="hourly" class="hourly"></ol>
+        </section>
+
+        <section class="card">
+            <h2>7-day forecast</h2>
+            <ul id="daily" class="daily"></ul>
+        </section>
+    </main>
+
+    <footer>Weather data by <a href="https://open-meteo.com/" rel="noopener" target="_blank">Open-Meteo.com</a></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
